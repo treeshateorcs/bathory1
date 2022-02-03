@@ -20,6 +20,7 @@ ninja -C builddir
 - [x]  qoi
 - [x]  psd
 - [ ]  tga
+- [x]  psd
 
 ##### to
 - [x]  bmp
@@ -28,6 +29,7 @@ ninja -C builddir
 - [x]  png
 - [x]  qoi
 - [x]  tga
+- [ ]  psd
 
 the conversions that i've tested are 2 to 5 times faster than the `convert`
 command from the imagemagick package
