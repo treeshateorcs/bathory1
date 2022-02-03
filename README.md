@@ -1,5 +1,14 @@
 this is very WIP
 
+#### build instructions
+```
+sudo pacman -S fmt meson
+git clone https://github.com/treeshateorcs/bathory1.git
+cd bathory1
+meson builddir --buildtype=release
+ninja -C builddir
+./builddir/bathory1 144.png 144.qoi
+```
 
 #### working conversions
 
