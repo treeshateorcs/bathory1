@@ -33,29 +33,29 @@ int main(int argc, char *argv[]) {
   BYTE *output_buffer = nullptr;
   qoi_desc desc{};
   switch (v[0]) {
-  case 0x38:
+  case 0x38: // psd
     if (identify_format(v, std::array<BYTE, 4>{0x38, 0x42, 0x50, 0x53})) {
       convert_to_intermediary(input_buffer, &output_buffer, len, &desc);
       break;
     };
-  case 0x42:
+  case 0x42: // bmp
     if (identify_format(v, std::array<BYTE, 2>{0x42, 0x4d})) {
       convert_to_intermediary(input_buffer, &output_buffer, len, &desc);
       break;
     };
-  case 0x53:
+  case 0x53: // fits
     if (identify_format(
             v, std::array<BYTE, 6>{0x53, 0x49, 0x4d, 0x50, 0x4c, 0x45})) {
       break;
     };
   case 0x47:
     switch (v[1]) {
-    case 0x49:
+    case 0x49: // gif
       if (identify_format(v, std::array<BYTE, 4>{0x47, 0x49, 0x46, 0x38})) {
         convert_to_intermediary(input_buffer, &output_buffer, len, &desc);
         break;
       }
-    case 0x4b:
+    case 0x4b: // gks
       if (identify_format(v, std::array<BYTE, 4>{0x47, 0x4b, 0x53, 0x4d})) {
         break;
       }
@@ -63,11 +63,11 @@ int main(int argc, char *argv[]) {
       break;
     }
     break;
-  case 0x01:
+  case 0x01: // rgb
     if (identify_format(v, std::array<BYTE, 2>{0x47, 0xda})) {
       break;
     }
-  case 0xf1:
+  case 0xf1: // itc
     if (identify_format(v, std::array<BYTE, 4>{0xf1, 0x00, 0x40, 0xbb})) {
       break;
     }
@@ -77,11 +77,11 @@ int main(int argc, char *argv[]) {
     };
   case 0x49:
     switch (v[2]) {
-    case 0x4e:
+    case 0x4e: // nif
       if (identify_format(v, std::array<BYTE, 4>{0x49, 0x49, 0x4e, 0x31})) {
         break;
       };
-    case 0x2a:
+    case 0x2a: // tiff_intel
       if (identify_format(v, std::array<BYTE, 4>{0x49, 0x49, 0x2a, 0x00})) {
         break;
       };
@@ -89,43 +89,43 @@ int main(int argc, char *argv[]) {
       break;
     }
     break;
-  case 0x56:
+  case 0x56: // pm
     if (identify_format(v, std::array<BYTE, 4>{0x56, 0x49, 0x45, 0x57})) {
       break;
     };
-  case 0x89:
+  case 0x89: // png
     if (identify_format(v, std::array<BYTE, 4>{0x89, 0x50, 0x4e, 0x47})) {
       convert_to_intermediary(input_buffer, &output_buffer, len, &desc);
       break;
     };
-  case 0x25:
+  case 0x25: // ps
     if (identify_format(v, std::array<BYTE, 2>{0x25, 0x21})) {
       break;
     };
-  case 0x59:
+  case 0x59: // ras
     if (identify_format(v, std::array<BYTE, 4>{0x59, 0xa6, 0x6a, 0x95})) {
       break;
     };
-  case 0x4d:
+  case 0x4d: // tiff_motorola
     if (identify_format(v, std::array<BYTE, 4>{0x4d, 0x4d, 0x00, 0x2a})) {
       break;
     };
-  case 0x67:
+  case 0x67: // xcf
     if (identify_format(v,
                         std::array<BYTE, 10>{0x67, 0x69, 0x6d, 0x70, 0x20, 0x78,
                                              0x63, 0x66, 0x20, 0x76})) {
       break;
     };
-  case 0x23:
+  case 0x23: // fig
     if (identify_format(v, std::array<BYTE, 4>{0x23, 0x46, 0x49, 0x47})) {
       break;
     };
-  case 0x2f:
+  case 0x2f: // xpm
     if (identify_format(v, std::array<BYTE, 9>{0x2f, 0x2a, 0x20, 0x58, 0x50,
                                                0x4d, 0x20, 0x2a, 0x2f})) {
       break;
     };
-  case 0x71:
+  case 0x71: // qoi
     if (identify_format(v, std::array<BYTE, 4>{0x71, 0x6f, 0x69, 0x66})) {
       convert_qoi_to_intermediary(input_buffer, &output_buffer, len, &desc);
       break;
