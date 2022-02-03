@@ -33,9 +33,8 @@ void determine_output_format(std::string &output_extension,
   }
 }
 void convert_qoi_to_intermediary(const std::vector<BYTE> &i, BYTE **o,
-                                 std::size_t *len, qoi_desc *desc) {
-  void *qoi_decode(const void *data, int size, qoi_desc *desc, int channels);
-  **o = *reinterpret_cast<BYTE *>(qoi_decode(&i[0], *len, desc, 4));
+                                 std::size_t len, qoi_desc *desc) {
+  *o = reinterpret_cast<BYTE *>(qoi_decode(&i[0], len, desc, 4));
   if (*o == nullptr) {
     fmt::print("failed decoding\n");
     std::exit(EXIT_FAILURE);
@@ -43,7 +42,7 @@ void convert_qoi_to_intermediary(const std::vector<BYTE> &i, BYTE **o,
 }
 
 void convert_to_intermediary(const std::vector<BYTE> &i, BYTE **o,
-                             std::size_t *len, qoi_desc *desc) {
+                             std::size_t len, qoi_desc *desc) {
   if (!stbi_info_from_memory(&i[0], i.size(),
                              reinterpret_cast<int *>(&desc->width),
                              reinterpret_cast<int *>(&desc->height),

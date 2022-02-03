@@ -6,7 +6,7 @@
 #include "stb_image_write.h"
 #include <fstream>
 
-void convert_from_intermediary_to_qoi(BYTE *output_buffer, std::size_t *len,
+void convert_from_intermediary_to_qoi(BYTE *output_buffer, std::size_t len,
                                       qoi_desc *desc,
                                       const std::string &output_filename) {
   int encoded = qoi_write(output_filename.c_str(), output_buffer, desc);
@@ -16,7 +16,7 @@ void convert_from_intermediary_to_qoi(BYTE *output_buffer, std::size_t *len,
   }
 }
 
-void convert_from_intermediary_to_bmp(BYTE *output_buffer, std::size_t *len,
+void convert_from_intermediary_to_bmp(BYTE *output_buffer, std::size_t len,
                                       qoi_desc *desc,
                                       const std::string &output_filename) {
   int res = stbi_write_bmp(output_filename.c_str(), desc->width, desc->height,
@@ -27,7 +27,7 @@ void convert_from_intermediary_to_bmp(BYTE *output_buffer, std::size_t *len,
   }
 }
 
-void convert_from_intermediary_to_tga(BYTE *output_buffer, std::size_t *len,
+void convert_from_intermediary_to_tga(BYTE *output_buffer, std::size_t len,
                                       qoi_desc *desc,
                                       const std::string &output_filename) {
   int res = stbi_write_tga(output_filename.c_str(), desc->width, desc->height,
@@ -38,7 +38,7 @@ void convert_from_intermediary_to_tga(BYTE *output_buffer, std::size_t *len,
   }
 }
 
-void convert_from_intermediary_to_jpeg(BYTE *output_buffer, std::size_t *len,
+void convert_from_intermediary_to_jpeg(BYTE *output_buffer, std::size_t len,
                                        qoi_desc *desc,
                                        const std::string &output_filename) {
   int res = stbi_write_jpg(output_filename.c_str(), desc->width, desc->height,
@@ -49,7 +49,7 @@ void convert_from_intermediary_to_jpeg(BYTE *output_buffer, std::size_t *len,
   }
 }
 
-void convert_from_intermediary_to_png(BYTE *output_buffer, std::size_t *len,
+void convert_from_intermediary_to_png(BYTE *output_buffer, std::size_t len,
                                       qoi_desc *desc,
                                       const std::string &output_filename) {
   int res = stbi_write_png(output_filename.c_str(), desc->width, desc->height,
