@@ -2,7 +2,7 @@ this is very WIP
 
 #### build instructions
 ```
-sudo pacman -S fmt meson
+sudo pacman -S fmt meson base-devel
 git clone https://github.com/treeshateorcs/bathory1.git
 cd bathory1
 meson builddir --buildtype=release
